@@ -1,13 +1,4 @@
-# Slime [![Build Status][travis-img]][travis] [![Hex Version][hex-img]][hex] [![License][license-img]][license]
-
-[travis-img]: https://travis-ci.org/slime-lang/slime.png?branch=master
-[travis]: https://travis-ci.org/slime-lang/slime
-[hex-img]: https://img.shields.io/hexpm/v/slime.svg
-[hex]: https://hex.pm/packages/slime
-[license-img]: http://img.shields.io/badge/license-MIT-brightgreen.svg
-[license]: http://opensource.org/licenses/MIT
-
-> A refreshing way to slim down your markup in Elixir.
+> A refreshing way to slim down your markup in Elixir with support to canjs.
 
 Slime is an [Elixir][elixir] library for rendering [Slim][slim]-like
 templates as HTML.

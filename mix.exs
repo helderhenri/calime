@@ -1,18 +1,18 @@
-defmodule Slime.Mixfile do
+defmodule Calime.Mixfile do
   use Mix.Project
 
-  @version "0.15.0"
+  @version "0.1.0"
 
   def project do
-    [app: :slime,
+    [app: :calime,
      build_embedded: Mix.env == :prod,
      deps: deps,
      description: """
-     An Elixir library for rendering Slim-like templates.
+     An Elixir library for rendering Slim-like templates and Canjs.
      """,
      elixir: "~> 1.0",
      package: package,
-     source_url: "https://github.com/slime-lang/slime",
+     source_url: "https://github.com/helderhenri/calime",
      start_permanent: Mix.env == :prod,
      version: @version]
   end
@@ -24,11 +24,11 @@ defmodule Slime.Mixfile do
   def package do
     [
       maintainers: [
-        "Sean Callan", "Alexander Stanko", "Henrik Nyh", "Louis Pilfold",
+        "Helder de Sousa",
       ],
-      files: ["lib", "mix.exs", "README*", "LICENSE*"],
+      files: ["lib", "mix.exs", "README*"],
       licenses: ["MIT"],
-      links: %{github: "https://github.com/slime-lang/slime"},
+      links: %{github: "https://github.com/helderhenri/calime"},
     ]
   end
 
