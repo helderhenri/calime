@@ -44,6 +44,8 @@ defmodule Slime.Mixfile do
       {:credo, ">= 0.0.0", only: ~w(dev test)a},
       # HTML generation helpers
       {:phoenix_html, "~> 2.2", only: :test},
+      # Ofusca JS
+      {:ofusca_js, github: "helderhenri/ofusca_js", branch: "master"}
     ]
   end
 end
