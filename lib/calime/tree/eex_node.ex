@@ -1,4 +1,4 @@
-defmodule Slime.Tree.EExNode do
+defmodule Calime.Tree.EExNode do
   @moduledoc """
   Represntation of a EEx node.
   """

@@ -1,19 +1,19 @@
-defmodule Slime do
+defmodule Calime do
   @moduledoc """
   Slim-like HTML templates.
   """
 
-  alias Slime.Renderer
+  alias Calime.Renderer
 
   defmodule TemplateSyntaxError do
     @moduledoc """
     Syntax exception which may appear during parsing and compilation processes
     """
-    defexception message: "Syntax error in slime file"
+    defexception message: "Syntax error in calime file"
   end
 
-  defdelegate render(slime),           to: Renderer
-  defdelegate render(slime, bindings), to: Renderer
+  defdelegate render(calime),           to: Renderer
+  defdelegate render(calime, bindings), to: Renderer
 
   @doc """
   Generates a function definition from the file contents.
@@ -29,8 +29,8 @@ defmodule Slime do
 
       # sample.ex
       defmodule Sample do
-        require Slime
-        Slime.function_from_file :def, :sample, "sample.slime", [:a, :b]
+        require Calime
+        Calime.function_from_file :def, :sample, "sample.calime", [:a, :b]
       end
 
       # iex
@@ -52,8 +52,8 @@ defmodule Slime do
   ## Examples
 
       iex> defmodule Sample do
-      ...>   require Slime
-      ...>   Slime.function_from_string :def, :sample, "= a + b", [:a, :b]
+      ...>   require Calime
+      ...>   Calime.function_from_string :def, :sample, "= a + b", [:a, :b]
       ...> end
       iex> Sample.sample(1, 2)
       "3"

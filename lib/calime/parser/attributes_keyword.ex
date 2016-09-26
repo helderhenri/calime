@@ -1,4 +1,4 @@
-defmodule Slime.Parser.AttributesKeyword do
+defmodule Calime.Parser.AttributesKeyword do
   @moduledoc "
   Utilities for handling element attributes.
   "
@@ -9,13 +9,13 @@ defmodule Slime.Parser.AttributesKeyword do
   `merge_rules` should me an `%{attribute_name: joining_character}` map
 
   ## Examples
-      iex> Slime.Parser.AttributesKeyword.merge(
+      iex> Calime.Parser.AttributesKeyword.merge(
       ...>   [class: "a", class: ["b", "c"], class: "d"],
       ...>   %{class: " "}
       ...> )
       [class: "a b c d"]
 
-      iex> Slime.Parser.AttributesKeyword.merge(
+      iex> Calime.Parser.AttributesKeyword.merge(
       ...>   [class: "a", class: ["b", "c"], class: {:eex, content: "d"}],
       ...>   %{class: " "}
       ...> )

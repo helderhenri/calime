@@ -1,7 +1,7 @@
-defmodule Slime.Parser.EmbeddedEngine do
+defmodule Calime.Parser.EmbeddedEngine do
   @moduledoc """
   Embedded engine behaviour module.
-  Provides basic logic of parsing slime with embedded parts for other engines.
+  Provides basic logic of parsing calime with embedded parts for other engines.
   """
   @type parser_tag :: binary | {:eex | binary, Keyword.t}
   @callback render(binary, Keyword.t) :: parser_tag
@@ -10,12 +10,12 @@ defmodule Slime.Parser.EmbeddedEngine do
   @empty_line_regex ~r/^\s*$/
 
   @engines %{
-    javascript: Slime.Parser.EmbeddedEngine.Javascript,
-    css: Slime.Parser.EmbeddedEngine.Css,
-    elixir: Slime.Parser.EmbeddedEngine.Elixir,
-    eex: Slime.Parser.EmbeddedEngine.EEx
+    javascript: Calime.Parser.EmbeddedEngine.Javascript,
+    css: Calime.Parser.EmbeddedEngine.Css,
+    elixir: Calime.Parser.EmbeddedEngine.Elixir,
+    eex: Calime.Parser.EmbeddedEngine.EEx
   }
-  |> Map.merge(Application.get_env(:slime, :embedded_engines, %{}))
+  |> Map.merge(Application.get_env(:calime, :embedded_engines, %{}))
   |> Enum.into(%{}, fn ({key, value}) -> {to_string(key), value} end)
   @registered_engines Map.keys(@engines)
 
@@ -43,7 +43,7 @@ defmodule Slime.Parser.EmbeddedEngine do
   end
 
   defp render_with_engine(engine, embedded_text) do
-    keep_lines = Application.get_env(:slime, :keep_lines)
+    keep_lines = Application.get_env(:calime, :keep_lines)
     embedded_text = if keep_lines do
       "\n" <> embedded_text
     else
@@ -67,13 +67,13 @@ defmodule Slime.Parser.EmbeddedEngine do
   end
 end
 
-defmodule Slime.Parser.EmbeddedEngine.Javascript do
+defmodule Calime.Parser.EmbeddedEngine.Javascript do
   @moduledoc """
   Javascript engine callback module
   """
 
-  @behaviour Slime.Parser.EmbeddedEngine
-  import Slime.Parser, only: [parse_eex_string: 1]
+  @behaviour Calime.Parser.EmbeddedEngine
+  import Calime.Parser, only: [parse_eex_string: 1]
 
   def render(text, _options) do
     txt = text |> parse_eex_string |> OfuscaJs.parser
@@ -83,13 +83,13 @@ end
 
 
 
-defmodule Slime.Parser.EmbeddedEngine.Css do
+defmodule Calime.Parser.EmbeddedEngine.Css do
   @moduledoc """
   CSS engine callback module
   """
 
-  @behaviour Slime.Parser.EmbeddedEngine
-  import Slime.Parser, only: [parse_eex_string: 1]
+  @behaviour Calime.Parser.EmbeddedEngine
+  import Calime.Parser, only: [parse_eex_string: 1]
 
   def render(text, _options) do
 
@@ -98,12 +98,12 @@ defmodule Slime.Parser.EmbeddedEngine.Css do
 end
 
 
-defmodule Slime.Parser.EmbeddedEngine.Elixir do
+defmodule Calime.Parser.EmbeddedEngine.Elixir do
   @moduledoc """
   Elixir code engine callback module
   """
 
-  @behaviour Slime.Parser.EmbeddedEngine
+  @behaviour Calime.Parser.EmbeddedEngine
 
   def render(text, options) do
     children = if options[:keep_lines] do
@@ -115,12 +115,12 @@ defmodule Slime.Parser.EmbeddedEngine.Elixir do
   end
 end
 
-defmodule Slime.Parser.EmbeddedEngine.EEx do
+defmodule Calime.Parser.EmbeddedEngine.EEx do
   @moduledoc """
   EEx engine callback module
   """
 
-  @behaviour Slime.Parser.EmbeddedEngine
+  @behaviour Calime.Parser.EmbeddedEngine
 
   def render(text, _options) do
     text

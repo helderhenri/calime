@@ -1,6 +1,6 @@
-defmodule Slime.Preprocessor do
+defmodule Calime.Preprocessor do
   @moduledoc """
-  In order to make parsing Slime documents easier we run some simple
+  In order to make parsing Calime documents easier we run some simple
   transformations on the document to standardise the format.
   """
 

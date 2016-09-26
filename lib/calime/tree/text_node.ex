@@ -1,4 +1,4 @@
-defmodule Slime.Tree.TextNode do
+defmodule Calime.Tree.TextNode do
   @moduledoc """
   A struct representing simple text in our tree.
   """

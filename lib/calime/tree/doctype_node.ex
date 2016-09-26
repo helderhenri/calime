@@ -1,4 +1,4 @@
-defmodule Slime.Tree.DoctypeNode do
+defmodule Calime.Tree.DoctypeNode do
   @moduledoc """
   A Doctype node.
   """

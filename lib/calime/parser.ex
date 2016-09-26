@@ -1,11 +1,11 @@
-defmodule Slime.Parser do
+defmodule Calime.Parser do
   @moduledoc """
-  Build a Slime tree from a Slime document.
+  Build a Calime tree from a Calime document.
   """
 
-  alias Slime.Doctype
-  alias Slime.Parser.AttributesKeyword
-  alias Slime.Parser.EmbeddedEngine
+  alias Calime.Doctype
+  alias Calime.Parser.AttributesKeyword
+  alias Calime.Parser.EmbeddedEngine
 
   @content  "|"
   @comment  "/"
@@ -15,7 +15,7 @@ defmodule Slime.Parser do
   @smart    "="
 
   @attr_delim_regex ~r/[ ]+(?=([^"]*"[^"]*")*[^"]*$)/
-  @attr_list_delims Application.get_env(:slime, :attr_list_delims, %{"{" => "}", "[" => "]", "(" => ")"})
+  @attr_list_delims Application.get_env(:calime, :attr_list_delims, %{"{" => "}", "[" => "]", "(" => ")"})
   @attr_group_regex ~r/(?:\s*[\w-\W]+\s*=\s*(?:[^\s"'][^\s]+[^\s"']|"(?:(?<z>\{(?:[^{}]|\g<z>)*\})|[^"])*"|'[^']*'))*/
 
   @parse_line_split_regexes @attr_list_delims
@@ -64,7 +64,7 @@ defmodule Slime.Parser do
 
     case strip_line(line) do
       {_indentation, ""} ->
-        if Application.get_env(:slime, :keep_lines), do: {:prev, ""}, else: nil
+        if Application.get_env(:calime, :keep_lines), do: {:prev, ""}, else: nil
       {indentation, line} ->
         [tag, inline_tag] =
           case Regex.run(@inline_tag_regex, line, capture: :all_but_first) do
@@ -317,7 +317,7 @@ defmodule Slime.Parser do
 
   defp parse_wrapped_attributes(line, delim) do
     unless String.contains?(line, delim) do
-      raise Slime.TemplateSyntaxError, message: ~s(Can't find matching delimiter "#{delim}" in line "#{line}")
+      raise Calime.TemplateSyntaxError, message: ~s(Can't find matching delimiter "#{delim}" in line "#{line}")
     end
     [attrs, rem] = line
                    |> String.strip

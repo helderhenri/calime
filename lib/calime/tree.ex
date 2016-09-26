@@ -1,12 +1,12 @@
-defmodule Slime.Tree do
+defmodule Calime.Tree do
   @moduledoc """
-  Build a tree from a series of Slime lines.
+  Build a tree from a series of Calime lines.
   """
 
-  alias Slime.Tree.DoctypeNode
-  alias Slime.Tree.EExNode
-  alias Slime.Tree.HTMLNode
-  alias Slime.Tree.TextNode
+  alias Calime.Tree.DoctypeNode
+  alias Calime.Tree.EExNode
+  alias Calime.Tree.HTMLNode
+  alias Calime.Tree.TextNode
 
   def build_tree([]), do: []
   def build_tree([{_, line}|t]) when is_binary(line) do

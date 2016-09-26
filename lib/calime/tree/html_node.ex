@@ -1,4 +1,4 @@
-defmodule Slime.Tree.HTMLNode do
+defmodule Calime.Tree.HTMLNode do
   @moduledoc """
   An HTML node in the tree.
   """

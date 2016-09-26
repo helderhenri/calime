@@ -1,12 +1,12 @@
-defmodule Slime.Compiler do
+defmodule Calime.Compiler do
   @moduledoc """
-  Compile a tree of parsed Slime into EEx.
+  Compile a tree of parsed Calime into EEx.
   """
 
-  alias Slime.Tree.DoctypeNode
-  alias Slime.Tree.EExNode
-  alias Slime.Tree.HTMLNode
-  alias Slime.Tree.TextNode
+  alias Calime.Tree.DoctypeNode
+  alias Calime.Tree.EExNode
+  alias Calime.Tree.HTMLNode
+  alias Calime.Tree.TextNode
 
   @void_elements ~w(
     area br col doctype embed hr img input link meta base param
@@ -14,7 +14,7 @@ defmodule Slime.Compiler do
   )
 
   def compile(tree) do
-    lines_sep = if Application.get_env(:slime, :keep_lines), do: "\n", else: ""
+    lines_sep = if Application.get_env(:calime, :keep_lines), do: "\n", else: ""
     tree
     |> Enum.map(fn branch -> render_branch(branch) end)
     |> Enum.join(lines_sep)
